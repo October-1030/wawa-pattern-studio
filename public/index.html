@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wawa Pattern Studio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Wawa Pattern Studio</h1>
+          <p>Doll dress paper-pattern draft generator for Etsy-ready US Letter PDFs.</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button" id="downloadSvgButton" type="button" title="Download full-scale SVG" aria-label="Download SVG">
+            <span aria-hidden="true">SVG</span>
+          </button>
+          <button class="primary-button" id="printButton" type="button">Print / Save PDF</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <aside class="control-panel" aria-label="Pattern controls">
+          <section class="control-section">
+            <h2>Reference</h2>
+            <label class="upload-box" for="referenceImage">
+              <input id="referenceImage" type="file" accept="image/png,image/jpeg,image/webp" />
+              <span id="uploadLabel">Upload design image</span>
+            </label>
+            <div class="image-preview" id="imagePreview">
+              <span>No image loaded</span>
+            </div>
+            <label class="field">
+              <span>Style notes</span>
+              <textarea id="styleNotes" rows="3" placeholder="Example: sleeveless A-line dress with round neckline and back closure"></textarea>
+            </label>
+            <button class="secondary-button" id="analyzeButton" type="button">Analyze / Apply Notes</button>
+            <p class="status-line" id="aiStatus">Image analysis needs an API key. Manual draft controls generate the paper pattern.</p>
+          </section>
+
+          <section class="control-section">
+            <h2>Draft</h2>
+            <label class="field">
+              <span>Doll profile</span>
+              <select id="profileSelect">
+                <option value="blythe">Blythe / 12-inch doll</option>
+                <option value="barbie">Barbie-style / 11.5-inch doll</option>
+                <option value="americanGirl">18-inch doll</option>
+                <option value="custom">Custom measurements</option>
+              </select>
+            </label>
+            <button class="secondary-button full-button" id="referencePresetButton" type="button">Match 18-inch dress</button>
+
+            <div class="segmented" role="group" aria-label="Pattern style">
+              <button type="button" class="segment is-active" data-template="a-line">A-line</button>
+              <button type="button" class="segment" data-template="gathered">Gathered</button>
+              <button type="button" class="segment" data-template="straight">Straight</button>
+            </div>
+
+            <div class="field-grid">
+              <label class="field">
+                <span>Neckline</span>
+                <select id="necklineSelect">
+                  <option value="round">Round</option>
+                  <option value="square">Square</option>
+                  <option value="boat">Boat</option>
+                  <option value="v">V-neck</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Sleeve</span>
+                <select id="sleeveSelect">
+                  <option value="sleeveless">Sleeveless</option>
+                  <option value="short">Short sleeve</option>
+                  <option value="puff">Puff sleeve</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="check-row">
+              <input id="closureCheckbox" type="checkbox" checked />
+              <span>Back closure extension</span>
+            </label>
+          </section>
+
+          <section class="control-section">
+            <h2>Measurements</h2>
+            <div class="measure-grid" id="measurementGrid"></div>
+            <div class="field-grid">
+              <label class="field">
+                <span>Ease</span>
+                <input id="easeInput" type="number" min="0" step="0.05" value="0.2" />
+              </label>
+              <label class="field">
+                <span>Seam allowance</span>
+                <input id="seamAllowanceInput" type="number" min="0.125" step="0.125" value="0.25" />
+              </label>
+            </div>
+          </section>
+        </aside>
+
+        <section class="preview-panel" aria-label="Pattern preview">
+          <div class="preview-toolbar">
+            <div>
+              <h2>US Letter Pattern Pages</h2>
+              <p>8.5 x 11 in, English labels, 1 inch test square on each page.</p>
+            </div>
+            <div class="paper-pill">US Letter</div>
+          </div>
+          <div class="paper-preview" id="patternPreview"></div>
+        </section>
+
+        <aside class="output-panel" aria-label="Output summary">
+          <section>
+            <h2>Output Pack</h2>
+            <ul class="output-list">
+              <li>Cover page</li>
+              <li>US Letter pattern pages</li>
+              <li>Sewing instructions</li>
+              <li>Printing note for Etsy buyers</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Pattern Notes</h2>
+            <div class="notes-box" id="patternNotes"></div>
+          </section>
+          <section>
+            <h2>Etsy Text</h2>
+            <textarea id="etsyText" readonly rows="10"></textarea>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <section id="printDoc" aria-hidden="true"></section>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
