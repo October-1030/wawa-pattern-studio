@@ -1,0 +1,41 @@
+{
+  "profile": "american-girl-18",
+  "piece_count": 2,
+  "has_front": true,
+  "has_back": true,
+  "layout_fits_us_letter": false,
+  "shoulder_match": true,
+  "side_match": true,
+  "has_test_square": true,
+  "has_cutting_list": true,
+  "has_sewing_steps": true,
+  "child_friendly": true,
+  "seams": {
+    "shoulder_front": 0.7424,
+    "shoulder_back": 0.7424,
+    "shoulder_difference": 0.0,
+    "side_front": 8.8131,
+    "side_back": 8.8131,
+    "side_difference": 0.0,
+    "status": "PASS"
+  },
+  "sellable_gate": true,
+  "tiled_layout_required": true,
+  "tiled_layout_available": true,
+  "tiled_plan": {
+    "min_x": 0.2,
+    "min_y": 0.4,
+    "virtual_w": 12.025,
+    "virtual_h": 11.74,
+    "content_w": 7.45,
+    "content_h": 9.65,
+    "overlap": 0.5,
+    "margin_x": 0.52,
+    "margin_y": 0.78,
+    "step_x": 6.95,
+    "step_y": 9.15,
+    "cols": 2,
+    "rows": 2,
+    "pages": 4
+  }
+}

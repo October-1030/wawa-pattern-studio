@@ -1,0 +1,264 @@
+### Result
+[
+  {
+    "profile": "blythe",
+    "templateId": "trapeze",
+    "style": {
+      "skirt": "a-line",
+      "sleeve": "sleeveless",
+      "neckline": "round",
+      "closure": true
+    },
+    "pages": 1,
+    "measurements": {
+      "chest": 4.2,
+      "waist": 3.25,
+      "hip": 4.4,
+      "shoulder": 1.55,
+      "neck": 1.15,
+      "bodiceLength": 1.65,
+      "backLength": 1.65,
+      "garmentLength": 4.75,
+      "skirtLength": 3.1,
+      "armhole": 1.1,
+      "sleeveLength": 1,
+      "collarHeight": 0.25,
+      "label": "Blythe / 12-inch doll"
+    },
+    "seams": {
+      "front": {
+        "shoulder": 0.624,
+        "side": 1.181,
+        "waist": 0.63
+      },
+      "back": {
+        "shoulder": 0.641,
+        "side": 1.182,
+        "waist": 0.631
+      },
+      "skirtWaist": 0.694,
+      "frontArmhole": 0.803,
+      "backArmhole": 0.815,
+      "sleeveCap": null
+    },
+    "diffs": {
+      "shoulderBackMinusFront": 0.017,
+      "sideBackMinusFront": 0.001,
+      "frontWaistSkirtMinusBodice": 0.064,
+      "backWaistSkirtMinusBodice": 0.063,
+      "sleeveCapMinusArmholePair": null
+    },
+    "pieces": [
+      {
+        "title": "FRONT BODICE",
+        "cut": "Cut 1 on Fold",
+        "width": 1.54,
+        "height": 2.15,
+        "x": 0.55,
+        "y": 1.05
+      },
+      {
+        "title": "BACK BODICE",
+        "cut": "Cut 2",
+        "width": 1.86,
+        "height": 2.15,
+        "x": 3.05,
+        "y": 1.05
+      },
+      {
+        "title": "SKIRT FRONT",
+        "cut": "Cut 1 on Fold",
+        "width": 1.813,
+        "height": 3.85,
+        "x": 0.55,
+        "y": 4
+      },
+      {
+        "title": "SKIRT BACK",
+        "cut": "Cut 2",
+        "width": 1.813,
+        "height": 3.85,
+        "x": 4.25,
+        "y": 4
+      }
+    ]
+  },
+  {
+    "profile": "americanGirl",
+    "templateId": "trapeze",
+    "style": {
+      "skirt": "a-line",
+      "sleeve": "sleeveless",
+      "neckline": "round",
+      "closure": true
+    },
+    "pages": 2,
+    "measurements": {
+      "chest": 11,
+      "waist": 10.5,
+      "hip": 4.4,
+      "shoulder": 4.25,
+      "neck": 4.1,
+      "bodiceLength": 4.3,
+      "backLength": 4.3,
+      "garmentLength": 10.5,
+      "skirtLength": 6.25,
+      "armhole": 3.2,
+      "sleeveLength": 1,
+      "collarHeight": 0.25,
+      "label": "18-inch doll"
+    },
+    "seams": {
+      "front": {
+        "shoulder": 1.363,
+        "side": 2.562,
+        "waist": 2.443
+      },
+      "back": {
+        "shoulder": 1.422,
+        "side": 2.563,
+        "waist": 2.443
+      },
+      "skirtWaist": 2.488,
+      "frontArmhole": 1.963,
+      "backArmhole": 1.985,
+      "sleeveCap": null
+    },
+    "diffs": {
+      "shoulderBackMinusFront": 0.059,
+      "sideBackMinusFront": 0.001,
+      "frontWaistSkirtMinusBodice": 0.046,
+      "backWaistSkirtMinusBodice": 0.046,
+      "sleeveCapMinusArmholePair": null
+    },
+    "pieces": [
+      {
+        "title": "FRONT BODICE",
+        "cut": "Cut 1 on Fold",
+        "width": 3.24,
+        "height": 4.8,
+        "x": 0.55,
+        "y": 1.05
+      },
+      {
+        "title": "BACK BODICE",
+        "cut": "Cut 2",
+        "width": 3.56,
+        "height": 4.8,
+        "x": 3.05,
+        "y": 1.05
+      },
+      {
+        "title": "SKIRT FRONT",
+        "cut": "Cut 1 on Fold",
+        "width": 4.075,
+        "height": 7,
+        "x": 0.55,
+        "y": 4
+      },
+      {
+        "title": "SKIRT BACK",
+        "cut": "Cut 2",
+        "width": 4.075,
+        "height": 7,
+        "x": 4.25,
+        "y": 4
+      }
+    ]
+  },
+  {
+    "profile": "blythe",
+    "templateId": "puff-sleeve",
+    "style": {
+      "skirt": "gathered",
+      "sleeve": "puff",
+      "neckline": "round",
+      "closure": true
+    },
+    "pages": 1,
+    "measurements": {
+      "chest": 4.2,
+      "waist": 3.25,
+      "hip": 4.4,
+      "shoulder": 1.55,
+      "neck": 1.15,
+      "bodiceLength": 1.65,
+      "backLength": 1.65,
+      "garmentLength": 4.75,
+      "skirtLength": 3.1,
+      "armhole": 1.1,
+      "sleeveLength": 1,
+      "collarHeight": 0.25,
+      "label": "Blythe / 12-inch doll"
+    },
+    "seams": {
+      "front": {
+        "shoulder": 0.624,
+        "side": 1.181,
+        "waist": 0.63
+      },
+      "back": {
+        "shoulder": 0.641,
+        "side": 1.182,
+        "waist": 0.631
+      },
+      "skirtWaist": 1.204,
+      "frontArmhole": 0.803,
+      "backArmhole": 0.815,
+      "sleeveCap": 1.682
+    },
+    "diffs": {
+      "shoulderBackMinusFront": 0.017,
+      "sideBackMinusFront": 0.001,
+      "frontWaistSkirtMinusBodice": 0.574,
+      "backWaistSkirtMinusBodice": 0.573,
+      "sleeveCapMinusArmholePair": 0.064
+    },
+    "pieces": [
+      {
+        "title": "FRONT BODICE",
+        "cut": "Cut 1 on Fold",
+        "width": 1.54,
+        "height": 2.15,
+        "x": 0.55,
+        "y": 1.05
+      },
+      {
+        "title": "BACK BODICE",
+        "cut": "Cut 2",
+        "width": 1.86,
+        "height": 2.15,
+        "x": 3.05,
+        "y": 1.05
+      },
+      {
+        "title": "PUFF SLEEVE",
+        "cut": "Cut 2",
+        "width": 2.05,
+        "height": 1.15,
+        "x": 5.65,
+        "y": 1.05
+      },
+      {
+        "title": "SKIRT FRONT",
+        "cut": "Cut 1 on Fold",
+        "width": 2.244,
+        "height": 3.85,
+        "x": 0.55,
+        "y": 4
+      },
+      {
+        "title": "SKIRT BACK",
+        "cut": "Cut 2",
+        "width": 2.244,
+        "height": 3.85,
+        "x": 4.25,
+        "y": 4
+      }
+    ]
+  }
+]
+### Ran Playwright code
+```js
+await page.evaluate('() => eval(\'(\' + atob(\'KCkgPT4gewogIGZ1bmN0aW9uIHBhdGhMZW4oZCkgewogICAgY29uc3Qgc3ZnID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcignc3ZnJykgfHwgZG9jdW1lbnQuYm9keS5hcHBlbmRDaGlsZChkb2N1bWVudC5jcmVhdGVFbGVtZW50TlMoJ2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJywgJ3N2ZycpKTsKICAgIGNvbnN0IHAgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50TlMoJ2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJywgJ3BhdGgnKTsKICAgIHAuc2V0QXR0cmlidXRlKCdkJywgZCk7CiAgICBzdmcuYXBwZW5kQ2hpbGQocCk7CiAgICBjb25zdCBsID0gcC5nZXRUb3RhbExlbmd0aCgpOwogICAgcC5yZW1vdmUoKTsKICAgIHJldHVybiBsOwogIH0KICBmdW5jdGlvbiBsaW5lKHgxLCB5MSwgeDIsIHkyKSB7IHJldHVybiBgTSAke3gxfSAke3kxfSBMICR7eDJ9ICR7eTJ9YDsgfQogIGZ1bmN0aW9uIHFwYXRoKG14LCBteSwgY3gsIGN5LCB4LCB5KSB7IHJldHVybiBgTSAke214fSAke215fSBRICR7Y3h9ICR7Y3l9ICR7eH0gJHt5fWA7IH0KICBmdW5jdGlvbiBjcGF0aChteCwgbXksIHgxLCB5MSwgeDIsIHkyLCB4LCB5KSB7IHJldHVybiBgTSAke214fSAke215fSBDICR7eDF9ICR7eTF9ICR7eDJ9ICR7eTJ9ICR7eH0gJHt5fWA7IH0KICBmdW5jdGlvbiByb3VuZChuKSB7IHJldHVybiB0eXBlb2YgbiA9PT0gJ251bWJlcicgPyBNYXRoLnJvdW5kKG4gKiAxMDAwKSAvIDEwMDAgOiBuOyB9CgogIGZ1bmN0aW9uIGNoZWNrKHByb2ZpbGUsIHRlbXBsYXRlSWQpIHsKICAgIHN0YXRlLmNhdGVnb3J5ID0gJ2JqZCc7CiAgICBzdGF0ZS5wcm9maWxlID0gcHJvZmlsZTsKICAgIHN0YXRlLnRlbXBsYXRlSWQgPSB0ZW1wbGF0ZUlkOwogICAgYXBwbHlUZW1wbGF0ZURlZmF1bHRzKGN1cnJlbnRUZW1wbGF0ZSgpKTsKCiAgICBjb25zdCBtID0gZHJhZnRNZWFzdXJlbWVudHMoKTsKICAgIGNvbnN0IHNhID0gc3RhdGUuc2VhbUFsbG93YW5jZTsKICAgIGNvbnN0IGYgPSBib2RpY2VEcmFmdCgnZnJvbnQnKTsKICAgIGNvbnN0IGIgPSBib2RpY2VEcmFmdCgnYmFjaycpOwogICAgY29uc3QgZlN0aXRjaFcgPSBmLncgLSBzYTsKICAgIGNvbnN0IGJTdGl0Y2hXID0gYi53IC0gc2E7CiAgICBjb25zdCBmU3RpdGNoV2Fpc3QgPSBNYXRoLm1heChzYSArIDAuMiwgZi53YWlzdFcgLSBzYSk7CiAgICBjb25zdCBiU3RpdGNoV2Fpc3QgPSBNYXRoLm1heChiLmV4dGVuc2lvbiArIHNhICsgMC4yLCBiLndhaXN0VyAtIHNhKTsKICAgIGNvbnN0IGZTdGl0Y2hIID0gZi5oIC0gc2E7CiAgICBjb25zdCBiU3RpdGNoSCA9IGIuaCAtIHNhOwoKICAgIGNvbnN0IGZyb250ID0gewogICAgICBzaG91bGRlcjogcGF0aExlbihsaW5lKGYubmVja1csIDAsIGYuc2hvdWxkZXIsIGYuc2hvdWxkZXJEcm9wKSksCiAgICAgIHNpZGU6IHBhdGhMZW4oY3BhdGgoZlN0aXRjaFcsIGYuYXJtWSArIHNhICogMC4yNSwgZlN0aXRjaFcgKiAwLjk2LCBmLmggKiAwLjczLCBmU3RpdGNoV2Fpc3QgKyAwLjA4LCBmU3RpdGNoSCAqIDAuOSwgZlN0aXRjaFdhaXN0LCBmU3RpdGNoSCkpLAogICAgICB3YWlzdDogcGF0aExlbihxcGF0aChmU3RpdGNoV2Fpc3QsIGZTdGl0Y2hILCBmU3RpdGNoV2Fpc3QgKiAwLjUsIGZTdGl0Y2hIICsgZi53YWlzdEN1cnZlICogMC43LCBzYSwgZlN0aXRjaEgpKSwKICAgIH07CiAgICBjb25zdCBiYWNrID0gewogICAgICBzaG91bGRlcjogcGF0aExlbihsaW5lKGIuZXh0ZW5zaW9uICsgYi5uZWNrVywgMCwgYi5zaG91bGRlciwgYi5zaG91bGRlckRyb3ApKSwKICAgICAgc2lkZTogcGF0aExlbihjcGF0aChiU3RpdGNoVywgYi5hcm1ZICsgc2EgKiAwLjI1LCBiU3RpdGNoVyAqIDAuOTcsIGIuaCAqIDAuNzMsIGJTdGl0Y2hXYWlzdCArIDAuMDgsIGJTdGl0Y2hIICogMC45LCBiU3RpdGNoV2Fpc3QsIGJTdGl0Y2hIKSksCiAgICAgIHdhaXN0OiBwYXRoTGVuKHFwYXRoKGJTdGl0Y2hXYWlzdCwgYlN0aXRjaEgsIGJTdGl0Y2hXYWlzdCAqIDAuNSwgYlN0aXRjaEggKyBiLndhaXN0Q3VydmUgKiAwLjcsIGIuZXh0ZW5zaW9uICsgc2EsIGJTdGl0Y2hIKSksCiAgICB9OwoKICAgIGNvbnN0IGJhc2VUb3AgPSBtLndhaXN0IC8gNCArIHN0YXRlLmVhc2UgLyAyICsgc2E7CiAgICBjb25zdCB0b3AgPSBzdGF0ZS50ZW1wbGF0ZSA9PT0gJ2dhdGhlcmVkJyA/IGJhc2VUb3AgKiAxLjQ1IDogYmFzZVRvcDsKICAgIGNvbnN0IGggPSBtLnNraXJ0TGVuZ3RoICsgc2EgKiAyICsgMC4yNTsKICAgIGNvbnN0IHdhaXN0Q3VydmUgPSBNYXRoLm1heCgwLjA0LCBNYXRoLm1pbihoICogMC4wMTgsIDAuMTIpKTsKICAgIGNvbnN0IHN0aXRjaFRvcCA9IE1hdGgubWF4KHNhICsgMC4yLCB0b3AgLSBzYSk7CiAgICBjb25zdCBza2lydFdhaXN0ID0gcGF0aExlbihxcGF0aChzYSwgc2EgKyB3YWlzdEN1cnZlLCB0b3AgKiAwLjUsIHNhICogMC40NSwgc3RpdGNoVG9wLCBzYSkpOwoKICAgIGNvbnN0IGZyb250QXJtaG9sZSA9IHBhdGhMZW4oY3BhdGgoZi5zaG91bGRlciAtIHNhICogMC4yLCBmLnNob3VsZGVyRHJvcCArIHNhICogMC40NSwgZi5zaG91bGRlciArIHNhICogMC4yLCBmLmFybVkgKiAwLjMyLCBmU3RpdGNoVyAqIDAuNzQsIGYuYXJtWSAqIDAuNzgsIGZTdGl0Y2hXLCBmLmFybVkgKyBzYSAqIDAuMjUpKTsKICAgIGNvbnN0IGJhY2tBcm1ob2xlID0gcGF0aExlbihjcGF0aChiLnNob3VsZGVyIC0gc2EgKiAwLjIsIGIuc2hvdWxkZXJEcm9wICsgc2EgKiAwLjQ1LCBiLnNob3VsZGVyICsgc2EgKiAwLjIsIGIuYXJtWSAqIDAuMzQsIGJTdGl0Y2hXICogMC43NCwgYi5hcm1ZICogMC43OCwgYlN0aXRjaFcsIGIuYXJtWSArIHNhICogMC4yNSkpOwogICAgY29uc3Qgc2xlZXZlID0gc2xlZXZlUGllY2UoKTsKICAgIGxldCBzbGVldmVDYXAgPSBudWxsOwogICAgaWYgKHNsZWV2ZSkgewogICAgICBjb25zdCBjYXAgPSBzdGF0ZS5zbGVldmUgPT09ICdwdWZmJyA/IDAuNTUgOiAwLjM4OwogICAgICBjb25zdCB3ID0gbS5hcm1ob2xlICsgc2EgKiAyICsgKHN0YXRlLnNsZWV2ZSA9PT0gJ3B1ZmYnID8gMC40NSA6IDAuMTUpOwogICAgICBzbGVldmVDYXAgPSBwYXRoTGVuKHFwYXRoKHNhLCBjYXAgKyBzYSAqIDAuNiwgdyAvIDIsIHNhICogMC41LCB3IC0gc2EsIGNhcCArIHNhICogMC42KSk7CiAgICB9CgogICAgY29uc3QgcGFnZXMgPSBwYXR0ZXJuUGFnZXMoKTsKICAgIHJldHVybiB7CiAgICAgIHByb2ZpbGUsCiAgICAgIHRlbXBsYXRlSWQsCiAgICAgIHN0eWxlOiB7IHNraXJ0OiBzdGF0ZS50ZW1wbGF0ZSwgc2xlZXZlOiBzdGF0ZS5zbGVldmUsIG5lY2tsaW5lOiBzdGF0ZS5uZWNrbGluZSwgY2xvc3VyZTogc3RhdGUuY2xvc3VyZSB9LAogICAgICBwYWdlczogcGFnZXMubGVuZ3RoLAogICAgICBtZWFzdXJlbWVudHM6IG0sCiAgICAgIHNlYW1zOiB7IGZyb250LCBiYWNrLCBza2lydFdhaXN0LCBmcm9udEFybWhvbGUsIGJhY2tBcm1ob2xlLCBzbGVldmVDYXAgfSwKICAgICAgZGlmZnM6IHsKICAgICAgICBzaG91bGRlckJhY2tNaW51c0Zyb250OiBiYWNrLnNob3VsZGVyIC0gZnJvbnQuc2hvdWxkZXIsCiAgICAgICAgc2lkZUJhY2tNaW51c0Zyb250OiBiYWNrLnNpZGUgLSBmcm9udC5zaWRlLAogICAgICAgIGZyb250V2Fpc3RTa2lydE1pbnVzQm9kaWNlOiBza2lydFdhaXN0IC0gZnJvbnQud2Fpc3QsCiAgICAgICAgYmFja1dhaXN0U2tpcnRNaW51c0JvZGljZTogc2tpcnRXYWlzdCAtIGJhY2sud2Fpc3QsCiAgICAgICAgc2xlZXZlQ2FwTWludXNBcm1ob2xlUGFpcjogc2xlZXZlQ2FwID09IG51bGwgPyBudWxsIDogc2xlZXZlQ2FwIC0gKGZyb250QXJtaG9sZSArIGJhY2tBcm1ob2xlKSwKICAgICAgfSwKICAgICAgcGllY2VzOiBidWlsZFBpZWNlcygpLm1hcCgocCkgPT4gKHsgdGl0bGU6IHAudGl0bGUsIGN1dDogcC5jdXQsIHdpZHRoOiBwLndpZHRoLCBoZWlnaHQ6IHAuaGVpZ2h0LCB4OiBwLngsIHk6IHAueSB9KSksCiAgICB9OwogIH0KCiAgY29uc3QgcmVzdWx0cyA9IFsKICAgIGNoZWNrKCdibHl0aGUnLCAndHJhcGV6ZScpLAogICAgY2hlY2soJ2FtZXJpY2FuR2lybCcsICd0cmFwZXplJyksCiAgICBjaGVjaygnYmx5dGhlJywgJ3B1ZmYtc2xlZXZlJyksCiAgXTsKICByZXR1cm4gSlNPTi5wYXJzZShKU09OLnN0cmluZ2lmeShyZXN1bHRzLCAoX2ssIHYpID0+ICh0eXBlb2YgdiA9PT0gJ251bWJlcicgPyByb3VuZCh2KSA6IHYpKSk7Cn0K\') + \')\')()');
+```

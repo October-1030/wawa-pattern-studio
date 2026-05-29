@@ -1,0 +1,38 @@
+{
+  "profile": "american-girl-18",
+  "style": "easy-pinafore-dress",
+  "version": "v1-cuttable",
+  "experimental": true,
+  "piece_count": 8,
+  "has_front": true,
+  "has_back": true,
+  "has_test_square": true,
+  "has_cutting_list": true,
+  "has_sewing_steps": true,
+  "child_friendly": true,
+  "tiled_layout_required": false,
+  "tiled_layout_available": true,
+  "pieces_do_not_overlap": true,
+  "pieces_inside_print_area": true,
+  "waist_seams_match": true,
+  "seam_math": {
+    "front_waistband_stitch": 6.2,
+    "front_skirt_top_stitch": 6.2,
+    "back_waistband_pair_stitch": 6.1,
+    "back_skirt_pair_top_stitch": 6.1,
+    "strap_finished_width": 0.4,
+    "front_waist_difference": 0.0,
+    "back_waist_difference": 0.0
+  },
+  "risk": "medium - v1 experimental pinafore template, test sew required",
+  "pieces": [
+    "front bib",
+    "front skirt on fold",
+    "back skirt cut 2 mirror image",
+    "shoulder straps x2",
+    "front waistband",
+    "back waistbands x2",
+    "optional pocket"
+  ],
+  "sellable_gate": true
+}

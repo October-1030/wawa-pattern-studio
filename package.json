@@ -2,11 +2,12 @@
   "name": "wawa-pattern-app",
   "version": "0.1.0",
   "private": true,
-  "description": "Local doll sewing pattern generator for Etsy-ready US Letter PDFs.",
+  "description": "Local sewing pattern generator for Etsy-ready US Letter PDFs.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node scripts/verify-pattern-app.js"
+    "test": "node scripts/verify-pattern-app.js && python scripts/verify_product_patterns.py",
+    "generate:pdf": "python scripts/generate_product_pdf.py --render"
   },
   "engines": {
     "node": ">=20"

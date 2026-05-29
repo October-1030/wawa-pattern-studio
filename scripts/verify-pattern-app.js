@@ -15,6 +15,9 @@ function makeElement(id = '') {
     id,
     innerHTML: '',
     listeners: {},
+    style: {
+      setProperty() {},
+    },
     textContent: '',
     value: '',
     addEventListener(event, handler) {
@@ -22,10 +25,15 @@ function makeElement(id = '') {
     },
     appendChild() {},
     classList: {
+      add() {},
+      remove() {},
       toggle() {},
     },
     click() {
       this.clicked = true;
+    },
+    closest() {
+      return makeElement();
     },
     querySelectorAll() {
       return [];
@@ -75,6 +83,7 @@ function loadApp(fetchImpl = async () => ({ ok: false, json: async () => ({ fall
       body: {
         appendChild() {},
       },
+      addEventListener() {},
       createElement(tag) {
         const element = makeElement(tag);
         createdLinks.push(element);
@@ -91,6 +100,14 @@ function loadApp(fetchImpl = async () => ({ ok: false, json: async () => ({ fall
     },
     fetch: fetchImpl,
     window: {
+      location: {
+        hash: '',
+        pathname: '/',
+      },
+      addEventListener() {},
+      scrollTo() {
+        this.scrollCalled = true;
+      },
       printCalled: false,
       print() {
         this.printCalled = true;
@@ -169,6 +186,7 @@ async function run() {
   }
 
   api.state.profile = 'americanGirl';
+  api.state.templateId = 'trapeze';
   api.state.measurements = { ...api.profiles.americanGirl };
   api.state.template = 'a-line';
   api.state.sleeve = 'sleeveless';
@@ -217,7 +235,7 @@ async function run() {
   assert.equal(api.state.sleeve, 'short');
   assert.equal(api.state.template, 'straight');
   assert.equal(api.state.closure, true);
-  assert.match(elements.get('aiStatus').textContent, /OpenAI key is not configured/);
+  assert.match(elements.get('aiStatus').textContent, /AI key is not configured/);
 
   const input = elements.get('referenceImage');
   input.files = [{ name: 'dress.png', type: 'image/png' }];
@@ -231,6 +249,7 @@ async function run() {
   assert.match(elements.get('aiStatus').textContent, /Choose a PNG/);
 
   api.state.profile = 'americanGirl';
+  api.state.templateId = 'trapeze';
   api.state.measurements = { ...api.profiles.americanGirl };
   api.state.template = 'a-line';
   api.state.sleeve = 'sleeveless';
@@ -239,11 +258,12 @@ async function run() {
   assert.match(svgPack, /pattern-svg-pack/);
   assert.match(svgPack, /PAGE 1 OF 2/);
   assert.match(svgPack, /PAGE 2 OF 2/);
-  assert.match(svgPack, /1 x 1 inch test square/);
+  assert.match(svgPack, /1 x 1 in test square/);
+  assert.match(svgPack, /2\.54 x 2\.54 cm/);
 
   api.downloadSvg();
   assert.equal(blobStore.at(-1).type, 'image/svg+xml;charset=utf-8');
-  assert.equal(createdLinks.at(-1).download, 'wawa-americanGirl-doll-dress-pattern-us-letter.svg');
+  assert.equal(createdLinks.at(-1).download, 'wawa-bjd-trapeze-pattern-us-letter.svg');
   assert.equal(createdLinks.at(-1).clicked, true);
 
   const printHtml = api.printDocumentHtml();
@@ -254,7 +274,11 @@ async function run() {
 
   context.window.printCalled = false;
   elements.get('printButton').listeners.click();
-  assert.equal(context.window.printCalled, true, 'Print button did not call window.print');
+  assert.equal(context.window.printCalled, false, 'Top print button should open in-app preview before printing');
+  assert.match(elements.get('printPreviewPages').innerHTML, /Sewing Instructions/);
+  assert.equal(context.window.scrollCalled, true, 'Print preview should scroll into view');
+  elements.get('printNowButton').listeners.click();
+  assert.equal(context.window.printCalled, true, 'Preview print button did not call window.print');
 
   console.log('verify-pattern-app: all checks passed');
 }

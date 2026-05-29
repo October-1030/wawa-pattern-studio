@@ -1,0 +1,14 @@
+{
+  "pattern": "Blythe Simple Trapeze Dress",
+  "units": "inches",
+  "seam_allowance": 0.25,
+  "checks": {
+    "shoulder_front": 0.4317,
+    "shoulder_back": 0.4317,
+    "shoulder_difference": 0.0,
+    "side_front": 4.1397,
+    "side_back": 4.1397,
+    "side_difference": 0.0
+  },
+  "status": "PASS - shoulder and side seams match by construction"
+}

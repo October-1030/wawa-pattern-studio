@@ -1,32 +1,93 @@
 const profiles = {
   blythe: {
-    label: 'Blythe / 12-inch doll',
+    label: 'Blythe / 12-inch doll (draft legacy)',
     chest: 4.2,
     waist: 3.25,
+    hip: 4.4,
     shoulder: 1.55,
     neck: 1.15,
     bodiceLength: 1.65,
+    backLength: 1.65,
+    garmentLength: 4.75,
+    skirtLength: 3.1,
+    armhole: 1.1,
+  },
+  neoBlytheFactory: {
+    label: 'Neo Blythe factory body / 28.5 cm',
+    chest: 4.13,
+    waist: 2.95,
+    hip: 4.13,
+    shoulder: 1.55,
+    neck: 1.15,
+    bodiceLength: 1.65,
+    backLength: 1.65,
+    garmentLength: 4.75,
     skirtLength: 3.1,
     armhole: 1.1,
   },
   barbie: {
-    label: 'Barbie-style / 11.5-inch doll',
+    label: 'Barbie-style / 11.5-inch doll (draft legacy)',
     chest: 4.75,
     waist: 3.35,
+    hip: 4.9,
     shoulder: 1.7,
     neck: 1.2,
     bodiceLength: 1.75,
+    backLength: 1.75,
+    garmentLength: 5.15,
     skirtLength: 3.4,
     armhole: 1.15,
   },
+  barbieVintage: {
+    label: 'Vintage Barbie / old-style 12-inch doll',
+    chest: 6,
+    waist: 3.75,
+    hip: 5,
+    shoulder: 2.5,
+    neck: 2,
+    bodiceLength: 2.5,
+    backLength: 2.5,
+    garmentLength: 5.5,
+    skirtLength: 3,
+    armhole: 2,
+  },
   americanGirl: {
-    label: '18-inch doll',
+    label: 'American Girl style / 18-inch doll (draft verified)',
     chest: 11,
     waist: 10.5,
+    hip: 12,
     shoulder: 4.25,
     neck: 4.1,
     bodiceLength: 4.3,
+    backLength: 4.3,
+    garmentLength: 10.5,
     skirtLength: 6.25,
+    armhole: 3.2,
+  },
+  americanGirlStandard18: {
+    label: 'American Girl standard / 18-inch doll (research)',
+    chest: 11.75,
+    waist: 11.5,
+    hip: 12,
+    shoulder: 4.5,
+    neck: 6,
+    bodiceLength: 4.4,
+    backLength: 4.4,
+    garmentLength: 10.5,
+    skirtLength: 6.1,
+    armhole: 3.2,
+  },
+  ourGeneration18: {
+    label: 'Our Generation style / 18-inch doll (research)',
+    chest: 12,
+    waist: 11.33,
+    hip: 12,
+    shoulder: 4.5,
+    neck: 6,
+    bodiceLength: 4.5,
+    backLength: 4.5,
+    garmentLength: 10.6,
+    skirtLength: 6.1,
     armhole: 3.2,
   },
   custom: {
@@ -36,12 +97,14 @@ const profiles = {
     shoulder: 1.55,
     neck: 1.15,
     bodiceLength: 1.65,
+    backLength: 1.65,
+    garmentLength: 4.75,
     skirtLength: 3.1,
     armhole: 1.1,
   },
 };
 
-const measurementFields = [
+let measurementFields = [
   ['chest', 'Chest'],
   ['waist', 'Waist'],
   ['shoulder', 'Shoulder'],
@@ -51,11 +114,336 @@ const measurementFields = [
   ['armhole', 'Armhole'],
 ];
 
+const defaultDressMeasurements = {
+  chest: 4.2,
+  waist: 3.25,
+  hip: 4.4,
+  shoulder: 1.55,
+  neck: 1.15,
+  bodiceLength: 1.65,
+  backLength: 1.65,
+  garmentLength: 4.75,
+  skirtLength: 3.1,
+  armhole: 1.1,
+  sleeveLength: 1,
+  collarHeight: 0.25,
+};
+
+const catalog = {
+  women: {
+    label: 'Womenswear Drafting',
+    headline: 'Womenswear Smart Drafting',
+    description: 'Adult garment drafting templates kept in the same workflow for future Etsy and studio products.',
+    templates: [
+      {
+        id: 'prototype',
+        label: 'Block Pattern Drafting',
+        summary: 'Bodice block with bust, waist, and back length.',
+        title: 'Block Pattern Measurements',
+        guide: 'Block Pattern Measurement Guide',
+        kind: 'block',
+        fields: [
+          ['chest', 'Bust', 33],
+          ['waist', 'Waist', 25.25],
+          ['backLength', 'Back Length', 15],
+        ],
+      },
+      {
+        id: 'qipao',
+        label: 'Qipao Pattern Drafting',
+        summary: 'Close-fitting dress block with hip and collar controls.',
+        title: 'Qipao Pattern Measurements',
+        guide: 'Qipao Measurement Guide',
+        kind: 'qipao',
+        fields: [
+          ['chest', 'Bust', 33],
+          ['waist', 'Waist', 26.75],
+          ['hip', 'Hip', 36.25],
+          ['backLength', 'Back Length', 15],
+          ['waistToHip', 'Waist to Hip Length', 7],
+          ['skirtLength', 'Skirt Length', 30],
+          ['collarHeight', 'Collar Height', 1.5],
+        ],
+      },
+      {
+        id: 'jiaao',
+        label: 'Ming-style Jiaao Pattern Drafting',
+        summary: 'Cross-collar jacket proportions with long sleeve span.',
+        title: 'Ming-style Jiaao Measurements',
+        guide: 'Ming-style Jiaao Measurement Guide',
+        kind: 'jiaao',
+        fields: [
+          ['chest', 'Bust', 39.5],
+          ['garmentLength', 'Garment Length', 23.5],
+          ['sleeveLength', 'Total Sleeve Length', 63],
+        ],
+      },
+      {
+        id: 'trapeze',
+        label: 'Trapeze Dress Pattern Drafting',
+        summary: 'A-line trapeze dress from bust and garment length.',
+        title: 'Trapeze Dress Measurements',
+        guide: 'Trapeze Dress Measurement Guide',
+        kind: 'trapeze',
+        skirtTemplate: 'a-line',
+        fields: [
+          ['chest', 'Bust', 33],
+          ['garmentLength', 'Garment Length', 31.5],
+        ],
+      },
+    ],
+  },
+  bjd: {
+    label: 'BJD Doll Drafting',
+    headline: 'BJD Fixed Template Drafting',
+    description: 'Choose a fixed doll dress template, select the doll profile, then export English US Letter PDF-ready pattern pages.',
+    templates: [
+      {
+        id: 'prototype',
+        label: 'BJD Bodice Block',
+        summary: 'Fitted front and back bodice block for testing doll measurements.',
+        title: 'BJD Block Pattern Measurements',
+        guide: 'BJD Block Pattern Measurement Guide',
+        kind: 'block',
+        fixed: true,
+        preset: { neckline: 'round', sleeve: 'sleeveless', skirt: 'straight', closure: true },
+        fixedNotes: 'Use this first to test the doll bust, waist, shoulder, neck, and armhole values before selling styled patterns.',
+        fields: [
+          ['chest', 'Bust', 4.2],
+          ['waist', 'Waist', 3.25],
+          ['shoulder', 'Shoulder', 1.55],
+          ['neck', 'Neck', 1.15],
+          ['backLength', 'Back Length', 1.65],
+          ['armhole', 'Armhole', 1.1],
+        ],
+      },
+      {
+        id: 'trapeze',
+        label: 'BJD Trapeze Dress',
+        summary: 'Sleeveless A-line dress with back closure. Best first Etsy template.',
+        title: 'BJD Trapeze Dress Measurements',
+        guide: 'BJD Trapeze Measurement Guide',
+        kind: 'trapeze',
+        fixed: true,
+        preset: { neckline: 'round', sleeve: 'sleeveless', skirt: 'a-line', closure: true },
+        fixedNotes: 'Fixed sleeveless round-neck A-line dress. Good for AI reference images that show a simple loose doll dress.',
+        fields: [
+          ['chest', 'Bust', 4.2],
+          ['garmentLength', 'Garment Length', 4.75],
+        ],
+      },
+      {
+        id: 'gathered-waist',
+        label: 'BJD Gathered Waist Dress',
+        summary: 'Sleeveless bodice with a fuller gathered skirt.',
+        title: 'BJD Gathered Waist Dress Measurements',
+        guide: 'Gathered Dress Measurement Guide',
+        kind: 'dress',
+        fixed: true,
+        preset: { neckline: 'round', sleeve: 'sleeveless', skirt: 'gathered', closure: true },
+        fixedNotes: 'Fixed round-neck bodice plus gathered skirt. Use for ruffle, full skirt, or party dress references.',
+        fields: [
+          ['chest', 'Bust', 4.2],
+          ['waist', 'Waist', 3.25],
+          ['bodiceLength', 'Bodice Length', 1.65],
+          ['skirtLength', 'Skirt Length', 3.1],
+        ],
+      },
+      {
+        id: 'puff-sleeve',
+        label: 'BJD Puff Sleeve Dress',
+        summary: 'Round-neck dress with puff sleeves and a gathered skirt.',
+        title: 'BJD Puff Sleeve Dress Measurements',
+        guide: 'Puff Sleeve Dress Measurement Guide',
+        kind: 'dress',
+        fixed: true,
+        preset: { neckline: 'round', sleeve: 'puff', skirt: 'gathered', closure: true },
+        fixedNotes: 'Fixed puff-sleeve dress with a gathered skirt. Use for cute, lolita, prairie, or party dress references.',
+        fields: [
+          ['chest', 'Bust', 4.2],
+          ['waist', 'Waist', 3.25],
+          ['shoulder', 'Shoulder', 1.55],
+          ['armhole', 'Armhole', 1.1],
+          ['bodiceLength', 'Bodice Length', 1.65],
+          ['skirtLength', 'Skirt Length', 3.1],
+        ],
+      },
+      {
+        id: 'qipao',
+        label: 'BJD Qipao Dress',
+        summary: 'Slim straight dress with V-style front and collar height control.',
+        title: 'BJD Qipao Measurements',
+        guide: 'BJD Qipao Measurement Guide',
+        kind: 'qipao',
+        fixed: true,
+        preset: { neckline: 'v', sleeve: 'sleeveless', skirt: 'straight', closure: true },
+        fixedNotes: 'Fixed slim qipao-style dress draft. Collar height is listed for the final Etsy measurement table.',
+        fields: [
+          ['chest', 'Bust', 4.45],
+          ['waist', 'Waist', 3.55],
+          ['hip', 'Hip', 4.85],
+          ['backLength', 'Back Length', 2],
+          ['waistToHip', 'Waist to Hip Length', 1.6],
+          ['skirtLength', 'Skirt Length', 4],
+          ['collarHeight', 'Collar Height', 0.25],
+        ],
+      },
+      {
+        id: 'jiaao',
+        label: 'BJD Jiaao Jacket',
+        summary: 'Loose cross-front jacket template for traditional-style doll outfits.',
+        title: 'BJD Jiaao Measurements',
+        guide: 'BJD Jiaao Measurement Guide',
+        kind: 'jiaao',
+        fixed: true,
+        preset: { neckline: 'v', sleeve: 'short', skirt: 'straight', closure: true },
+        fixedNotes: 'Fixed loose jacket-style draft. Use as a simple traditional top template before adding advanced overlap pieces.',
+        fields: [
+          ['chest', 'Bust', 5.25],
+          ['garmentLength', 'Garment Length', 3.15],
+          ['sleeveLength', 'Total Sleeve Length', 8.4],
+        ],
+      },
+    ],
+  },
+  pet: {
+    label: 'Petwear Drafting',
+    headline: 'Petwear Smart Drafting',
+    description: 'Petwear template structure copied as an architecture target, with local export controls.',
+    templates: [
+      {
+        id: 'vest',
+        label: 'Pet Vest Pattern Drafting',
+        summary: 'Vest draft from bust, neck, back length, and leg gap.',
+        title: 'Pet Vest Measurements',
+        guide: 'Pet Vest Measurement Guide',
+        kind: 'pet-vest',
+        fields: [
+          ['chest', 'Bust', 12.5],
+          ['neck', 'Neck', 8.75],
+          ['backLength', 'Back Length', 8],
+          ['frontLegGap', 'Front Leg Gap', 2],
+        ],
+      },
+      {
+        id: 'adjustable-vest',
+        label: 'Adjustable Pet Vest Drafting',
+        summary: 'Adjustable vest with the same core pet measurements.',
+        title: 'Adjustable Pet Vest Measurements',
+        guide: 'Adjustable Pet Vest Measurement Guide',
+        kind: 'pet-vest',
+        fields: [
+          ['chest', 'Bust', 12.5],
+          ['neck', 'Neck', 9],
+          ['backLength', 'Back Length', 9],
+          ['frontLegGap', 'Front Leg Gap', 2.35],
+        ],
+      },
+      {
+        id: 'one-piece',
+        label: 'One-Piece Petwear Drafting',
+        summary: 'One-piece petwear block.',
+        title: 'One-Piece Petwear Measurements',
+        guide: 'One-Piece Measurement Guide',
+        kind: 'pet-one-piece',
+        fields: [
+          ['chest', 'Bust', 12.5],
+          ['neck', 'Neck', 9],
+          ['backLength', 'Back Length', 9],
+          ['frontLegGap', 'Front Leg Gap', 2.35],
+        ],
+      },
+      {
+        id: 'tiered-dress',
+        label: 'Tiered Dress Petwear Drafting',
+        summary: 'Pet dress template with gathered skirt behavior.',
+        title: 'Tiered Dress Petwear Measurements',
+        guide: 'Tiered Dress Measurement Guide',
+        kind: 'pet-dress',
+        skirtTemplate: 'gathered',
+        fields: [
+          ['chest', 'Bust', 12.5],
+          ['neck', 'Neck', 9],
+          ['backLength', 'Back Length', 9],
+          ['frontLegGap', 'Front Leg Gap', 2.35],
+        ],
+      },
+      {
+        id: 'raincoat',
+        label: 'Pet Raincoat Drafting',
+        summary: 'Raincoat template with hood measurements.',
+        title: 'Pet Raincoat Measurements',
+        guide: 'Pet Raincoat Measurement Guide',
+        kind: 'pet-raincoat',
+        fields: [
+          ['chest', 'Bust', 12.5],
+          ['neck', 'Neck', 9],
+          ['backLength', 'Back Length', 9],
+          ['headCircumference', 'Head Circumference', 11.5],
+          ['headHeight', 'Head Height', 4.75],
+        ],
+      },
+      {
+        id: 'one-piece-plus',
+        label: 'Plus-Size One-Piece Petwear Drafting',
+        summary: 'Large pet one-piece draft with belly girth.',
+        title: 'Plus-Size One-Piece Petwear Measurements',
+        guide: 'Plus-Size One-Piece Measurement Guide',
+        kind: 'pet-one-piece',
+        fields: [
+          ['chest', 'Bust', 15.75],
+          ['neck', 'Neck', 9],
+          ['bellyGirth', 'Belly Girth', 18],
+          ['backLength', 'Back Length', 11.75],
+          ['frontLegGap', 'Front Leg Gap', 2],
+        ],
+      },
+      {
+        id: 'two-leg',
+        label: 'Two-Leg Petwear Drafting',
+        summary: 'Two-leg petwear with front-leg circumference and length.',
+        title: 'Two-Leg Petwear Measurements',
+        guide: 'Two-Leg Measurement Guide',
+        kind: 'pet-two-leg',
+        fields: [
+          ['chest', 'Bust', 22.75],
+          ['neck', 'Neck', 13.75],
+          ['backLength', 'Back Length', 15.75],
+          ['frontLegGap', 'Front Leg Gap', 4.75],
+          ['frontLegCircumference', 'Front Leg Circumference', 7],
+          ['frontLegLength', 'Front Leg Length', 7],
+        ],
+      },
+      {
+        id: 'four-leg',
+        label: 'Four-Leg Petwear Drafting',
+        summary: 'Four-leg petwear with hind leg controls.',
+        title: 'Four-Leg Petwear Measurements',
+        guide: 'Four-Leg Measurement Guide',
+        kind: 'pet-four-leg',
+        fields: [
+          ['chest', 'Bust', 22.75],
+          ['neck', 'Neck', 13.75],
+          ['backLength', 'Back Length', 15.75],
+          ['frontLegGap', 'Front Leg Gap', 4.75],
+          ['frontLegCircumference', 'Front Leg Circumference', 7],
+          ['frontLegLength', 'Front Leg Length', 11],
+          ['hipToThighRoot', 'Hip to Thigh Root', 9.5],
+          ['hindLegCircumference', 'Hind Leg Circumference', 10.25],
+          ['hindLegLength', 'Hind Leg Length', 13],
+        ],
+      },
+    ],
+  },
+};
+
 const state = {
+  category: 'bjd',
   imageDataUrl: '',
   imageName: '',
   profile: 'blythe',
   template: 'a-line',
+  templateId: 'trapeze',
   neckline: 'round',
   sleeve: 'sleeveless',
   closure: true,
@@ -64,29 +452,71 @@ const state = {
   measurements: { ...profiles.blythe },
   aiNotes: '',
   fitPreset: 'basic',
+  unit: 'in',
+  zoom: 1,
 };
 
 const elements = {
   analyzeButton: document.getElementById('analyzeButton'),
   aiStatus: document.getElementById('aiStatus'),
+  aboutView: document.getElementById('aboutView'),
+  backToStudioButton: document.getElementById('backToStudioButton'),
+  backToTemplatesButton: document.getElementById('backToTemplatesButton'),
   closureCheckbox: document.getElementById('closureCheckbox'),
   downloadSvgButton: document.getElementById('downloadSvgButton'),
   easeInput: document.getElementById('easeInput'),
   etsyText: document.getElementById('etsyText'),
+  exportPdfButton: document.getElementById('exportPdfButton'),
+  exportSvgPanelButton: document.getElementById('exportSvgPanelButton'),
+  fitButton: document.getElementById('fitButton'),
+  guideTitle: document.getElementById('guideTitle'),
+  homeView: document.getElementById('homeView'),
   imagePreview: document.getElementById('imagePreview'),
+  measurementGuide: document.getElementById('measurementGuide'),
   measurementGrid: document.getElementById('measurementGrid'),
+  modalBackdrop: document.getElementById('modalBackdrop'),
+  modalCloseButton: document.getElementById('modalCloseButton'),
+  modalContent: document.getElementById('modalContent'),
   necklineSelect: document.getElementById('necklineSelect'),
   patternNotes: document.getElementById('patternNotes'),
   patternPreview: document.getElementById('patternPreview'),
+  previewTitle: document.getElementById('previewTitle'),
   printButton: document.getElementById('printButton'),
   printDoc: document.getElementById('printDoc'),
+  printNowButton: document.getElementById('printNowButton'),
+  printPreviewPages: document.getElementById('printPreviewPages'),
+  printPreviewView: document.getElementById('printPreviewView'),
+  productSubtitle: document.getElementById('productSubtitle'),
+  productTitle: document.getElementById('productTitle'),
+  productView: document.getElementById('productView'),
+  labView: document.getElementById('labView'),
+  labImageInput: document.getElementById('labImageInput'),
+  labImagePreview: document.getElementById('labImagePreview'),
+  labNotes: document.getElementById('labNotes'),
+  labAnalyzeButton: document.getElementById('labAnalyzeButton'),
+  labAnalysisResult: document.getElementById('labAnalysisResult'),
+  labDollSelect: document.getElementById('labDollSelect'),
+  labGenerateButton: document.getElementById('labGenerateButton'),
+  labProductResult: document.getElementById('labProductResult'),
+  labQualityList: document.getElementById('labQualityList'),
+  productDollSelect: document.getElementById('productDollSelect'),
+  productStyleSelect: document.getElementById('productStyleSelect'),
+  generateProductPdfButton: document.getElementById('generateProductPdfButton'),
+  productGenerateStatus: document.getElementById('productGenerateStatus'),
+  productResult: document.getElementById('productResult'),
+  productQualityList: document.getElementById('productQualityList'),
   profileSelect: document.getElementById('profileSelect'),
   referencePresetButton: document.getElementById('referencePresetButton'),
   referenceImage: document.getElementById('referenceImage'),
   seamAllowanceInput: document.getElementById('seamAllowanceInput'),
   sleeveSelect: document.getElementById('sleeveSelect'),
+  studioView: document.getElementById('studioView'),
   styleNotes: document.getElementById('styleNotes'),
+  templateView: document.getElementById('templateView'),
+  unitSelect: document.getElementById('unitSelect'),
   uploadLabel: document.getElementById('uploadLabel'),
+  zoomInButton: document.getElementById('zoomInButton'),
+  zoomOutButton: document.getElementById('zoomOutButton'),
 };
 
 function clamp(value, min, max) {
@@ -110,6 +540,348 @@ function fmt(value) {
   return Number(value).toFixed(2).replace(/\.00$/, '');
 }
 
+const CM_PER_INCH = 2.54;
+
+function unitLabel() {
+  return state.unit === 'cm' ? 'cm' : 'in';
+}
+
+function toDisplayUnit(valueInches) {
+  return state.unit === 'cm' ? number(valueInches) * CM_PER_INCH : number(valueInches);
+}
+
+function fromDisplayUnit(value) {
+  return state.unit === 'cm' ? number(value) / CM_PER_INCH : number(value);
+}
+
+function displayMeasurement(valueInches) {
+  return state.unit === 'cm' ? fmt(toDisplayUnit(valueInches)) : fmt(valueInches);
+}
+
+function dualMeasurement(valueInches) {
+  return `${fmt(valueInches)} in / ${fmt(number(valueInches) * CM_PER_INCH)} cm`;
+}
+
+function measurementStep() {
+  return state.unit === 'cm' ? '0.1' : '0.05';
+}
+
+function currentCategory() {
+  return catalog[state.category] || catalog.bjd;
+}
+
+function currentTemplate() {
+  return currentCategory().templates.find((template) => template.id === state.templateId) || catalog.bjd.templates[3];
+}
+
+function templateDefaults(template = currentTemplate()) {
+  const measurements = { ...defaultDressMeasurements };
+  template.fields.forEach(([key, _label, value]) => {
+    measurements[key] = value;
+  });
+  if (state.category === 'bjd' && profiles[state.profile]) {
+    Object.assign(measurements, profiles[state.profile]);
+    template.fields.forEach(([key, _label, value]) => {
+      if (!(key in profiles[state.profile])) measurements[key] = value;
+    });
+  }
+  measurements.bodiceLength = measurements.bodiceLength || measurements.backLength || measurements.garmentLength * 0.38;
+  measurements.backLength = measurements.backLength || measurements.bodiceLength;
+  measurements.skirtLength = measurements.skirtLength || Math.max(1, (measurements.garmentLength || 4.75) - measurements.bodiceLength);
+  measurements.waist = measurements.waist || measurements.chest * 0.78;
+  measurements.hip = measurements.hip || measurements.chest * 1.05;
+  measurements.shoulder = measurements.shoulder || measurements.chest * 0.38;
+  measurements.neck = measurements.neck || measurements.chest * 0.28;
+  measurements.armhole = measurements.armhole || measurements.chest * 0.26;
+  return measurements;
+}
+
+function draftMeasurements() {
+  const m = { ...defaultDressMeasurements, ...state.measurements };
+  m.bodiceLength = m.bodiceLength || m.backLength || m.garmentLength * 0.38;
+  m.backLength = m.backLength || m.bodiceLength;
+  m.skirtLength = m.skirtLength || Math.max(1, (m.garmentLength || 4.75) - m.bodiceLength);
+  m.waist = m.waist || m.chest * 0.78;
+  m.hip = m.hip || m.chest * 1.05;
+  m.shoulder = m.shoulder || m.chest * 0.38;
+  m.neck = m.neck || m.chest * 0.28;
+  m.armhole = m.armhole || m.chest * 0.26;
+  return m;
+}
+
+function applyTemplateDefaults(template = currentTemplate()) {
+  measurementFields = template.fields.map(([key, label]) => [key, label]);
+  state.measurements = templateDefaults(template);
+  const preset = template.preset || {};
+  state.template = preset.skirt || template.skirtTemplate || (template.kind === 'qipao' ? 'straight' : 'a-line');
+  state.sleeve = preset.sleeve || (template.kind === 'jiaao' || template.kind.includes('leg') ? 'short' : 'sleeveless');
+  state.neckline = preset.neckline || (template.kind === 'qipao' || template.kind === 'jiaao' ? 'v' : 'round');
+  state.closure = preset.closure !== false;
+  state.fitPreset = 'basic';
+  state.aiNotes = '';
+}
+
+function routeHash(category, templateId = '') {
+  if (category === 'home') return '#/';
+  if (category === 'product') return '#/product';
+  if (category === 'lab') return '#/lab';
+  if (category === 'about') return '#/about-us';
+  const categoryPath = category === 'bjd' ? 'bjd-dolls' : category === 'women' ? 'womenswear' : category === 'pet' ? 'petwear' : category;
+  if (!templateId) return `#/${categoryPath}`;
+  return `#/${categoryPath}/${templateId}`;
+}
+
+function categoryFromPath(path) {
+  if (path === 'bjd-dolls') return 'bjd';
+  if (path === 'womenswear') return 'women';
+  if (path === 'petwear') return 'pet';
+  return catalog[path] ? path : '';
+}
+
+function setRoute(category, templateId = '') {
+  window.location.hash = routeHash(category, templateId);
+}
+
+function setVisibleView(view) {
+  elements.homeView.classList.toggle('is-hidden', view !== 'home');
+  elements.templateView.classList.toggle('is-hidden', view !== 'templates');
+  elements.productView.classList.toggle('is-hidden', view !== 'product');
+  elements.labView.classList.toggle('is-hidden', view !== 'lab');
+  elements.aboutView.classList.toggle('is-hidden', view !== 'about');
+  elements.studioView.classList.toggle('is-hidden', view !== 'studio');
+  elements.printPreviewView.classList.toggle('is-hidden', view !== 'printPreview');
+}
+
+function updateNav(activeCategory) {
+  document.querySelectorAll('[data-route]').forEach((button) => {
+    button.classList.toggle('is-active', button.dataset.route === activeCategory);
+  });
+}
+
+function renderHome() {
+  elements.homeView.innerHTML = `
+    <div class="home-copy">
+      <h1>Wawa Pattern Studio</h1>
+      <p>Professional custom drafting for doll clothes, womenswear, and petwear. Enter fixed model measurements and export English US Letter pattern pages for Etsy products.</p>
+    </div>
+    <div class="project-cards">
+      <button class="project-card product-card-highlight" type="button" data-category-card="lab">
+        <span>Upload Image Lab</span>
+        <small>Internal test: upload an outfit image, match a template, and generate an experimental PDF.</small>
+      </button>
+      <button class="project-card product-card-highlight" type="button" data-category-card="product">
+        <span>Doll Pattern Maker</span>
+        <small>Choose a doll and generate a product-quality printable PDF with seam checks.</small>
+      </button>
+      ${Object.entries(catalog)
+        .map(
+          ([key, category]) => `
+            <button class="project-card" type="button" data-category-card="${key}">
+              <span>${escapeHtml(category.label)}</span>
+              <small>${escapeHtml(category.description)}</small>
+            </button>
+          `,
+        )
+        .join('')}
+    </div>
+  `;
+}
+
+function renderTemplateList(categoryKey) {
+  const category = catalog[categoryKey] || catalog.bjd;
+  elements.templateView.innerHTML = `
+    <div class="template-heading">
+      <h1>${escapeHtml(category.headline)}</h1>
+      <p>${escapeHtml(category.description)}</p>
+    </div>
+    <div class="template-grid">
+      ${category.templates
+        .map(
+          (template) => `
+            <button class="template-card" type="button" data-template-card="${escapeHtml(template.id)}">
+              ${template.fixed ? '<em>Fixed template</em>' : ''}
+              <span>${escapeHtml(template.label)}</span>
+              <small>${escapeHtml(template.summary)}</small>
+            </button>
+          `,
+        )
+        .join('')}
+      <button class="template-card is-muted" type="button" disabled>
+        <span>Coming Soon</span>
+        <small>More drafting templates can be added to the same catalog.</small>
+      </button>
+    </div>
+  `;
+}
+
+function renderAbout() {
+  setVisibleView('about');
+  updateNav('about');
+}
+
+function renderProductMaker() {
+  setVisibleView('product');
+  updateNav('product');
+}
+
+function renderImageLab() {
+  setVisibleView('lab');
+  updateNav('lab');
+}
+
+function qualityCheckItems(quality) {
+  if (!quality) return '<li>Generate a PDF to view checks.</li>';
+  const items = [
+    ['Front/back pieces complete', quality.has_front && quality.has_back],
+    ['Shoulder seams match', quality.shoulder_match],
+    ['Side seams match', quality.side_match],
+    [quality.tiled_layout_required ? 'Tiled US Letter layout ready' : 'US Letter layout fits', quality.tiled_layout_required ? quality.tiled_layout_available : quality.layout_fits_us_letter],
+    ['1 inch test square included', quality.has_test_square],
+    ['Cutting list included', quality.has_cutting_list],
+    ['Child-friendly sewing steps included', quality.has_sewing_steps && quality.child_friendly],
+    ['Sellable gate passed', quality.sellable_gate],
+  ];
+  return items
+    .map(([label, ok]) => `<li class="${ok ? 'is-pass' : 'is-fail'}">${ok ? '✓' : '×'} ${escapeHtml(label)}</li>`)
+    .join('');
+}
+
+async function requestProductPdf({ doll, style, resultEl, qualityEl, statusEl, buttonEl }) {
+  buttonEl.disabled = true;
+  if (statusEl) statusEl.textContent = 'Generating product PDF...';
+  resultEl.innerHTML = '<p>Working...</p>';
+  qualityEl.innerHTML = '<li>Running checks...</li>';
+
+  try {
+    const response = await fetch('/api/generate-product-pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ doll, style }),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'PDF generation failed.');
+    if (statusEl) statusEl.textContent = 'PDF generated. Open it and print at 100% scale.';
+    resultEl.innerHTML = `
+      <p><strong>${escapeHtml(data.pdfName)}</strong></p>
+      <a class="primary-button download-link" href="${escapeHtml(data.pdfUrl)}" target="_blank" rel="noopener">Open / Download PDF</a>
+      ${data.quality?.experimental ? '<p class="status-line">Experimental pattern. Test sew before public release.</p>' : ''}
+      ${data.quality?.tiled_layout_required ? '<p class="status-line">This large doll pattern uses tiled pages. Tape pages together before cutting.</p>' : ''}
+    `;
+    qualityEl.innerHTML = qualityCheckItems(data.quality);
+  } catch (error) {
+    if (statusEl) statusEl.textContent = error.message;
+    resultEl.innerHTML = `<p>Could not generate PDF: ${escapeHtml(error.message)}</p>`;
+    qualityEl.innerHTML = '<li class="is-fail">× Generation failed</li>';
+  } finally {
+    buttonEl.disabled = false;
+  }
+}
+
+async function generateProductPdf() {
+  await requestProductPdf({
+    doll: elements.productDollSelect.value,
+    style: elements.productStyleSelect.value,
+    resultEl: elements.productResult,
+    qualityEl: elements.productQualityList,
+    statusEl: elements.productGenerateStatus,
+    buttonEl: elements.generateProductPdfButton,
+  });
+}
+
+function analyzeLabImage() {
+  const notes = String(elements.labNotes.value || '').toLowerCase();
+  const hasImage = Boolean(elements.labImageInput.files && elements.labImageInput.files[0]);
+  const isPinafore = hasImage || /pinafore|jumper|strap|bib|waistband|pocket|背带|围裙/.test(notes);
+  const style = isPinafore ? 'easy-pinafore-dress' : 'easy-a-line-dress';
+  elements.labAnalysisResult.innerHTML = `
+    <p><strong>Detected template:</strong> ${style === 'easy-pinafore-dress' ? 'Easy Pinafore Dress' : 'Easy A-Line Dress'}</p>
+    <p><strong>Confidence:</strong> ${style === 'easy-pinafore-dress' ? 'experimental / medium' : 'basic / high'}</p>
+    <p><strong>Note:</strong> Image Lab matches the picture to an internal template. It does not freehand arbitrary paper patterns.</p>
+  `;
+  elements.labAnalysisResult.dataset.matchedStyle = style;
+}
+
+async function generateLabPdf() {
+  const style = elements.labAnalysisResult.dataset.matchedStyle || 'easy-pinafore-dress';
+  await requestProductPdf({
+    doll: elements.labDollSelect.value,
+    style,
+    resultEl: elements.labProductResult,
+    qualityEl: elements.labQualityList,
+    statusEl: null,
+    buttonEl: elements.labGenerateButton,
+  });
+}
+
+function showTemplateList(categoryKey) {
+  state.category = categoryKey;
+  renderTemplateList(categoryKey);
+  setVisibleView('templates');
+  updateNav(categoryKey);
+}
+
+function showStudio(categoryKey, templateId) {
+  state.category = categoryKey;
+  state.templateId = templateId;
+  applyTemplateDefaults(currentTemplate());
+  createMeasurementInputs();
+  syncTemplateControls();
+  setVisibleView('studio');
+  updateNav(categoryKey);
+  render();
+}
+
+function routeFromHash() {
+  const routeText = window.location.hash
+    ? window.location.hash.replace(/^#\/?/, '')
+    : window.location.pathname.replace(/^\/?/, '');
+  const parts = routeText.split('/').filter(Boolean);
+  if (!parts.length) {
+    renderHome();
+    setVisibleView('home');
+    updateNav('home');
+    return;
+  }
+  if (parts[0] === 'about-us') {
+    renderAbout();
+    return;
+  }
+  if (parts[0] === 'product') {
+    renderProductMaker();
+    return;
+  }
+  if (parts[0] === 'lab') {
+    renderImageLab();
+    return;
+  }
+  const categoryKey = categoryFromPath(parts[0]);
+  if (!categoryKey) {
+    setRoute('home');
+    return;
+  }
+  if (parts[1]) {
+    const templateExists = catalog[categoryKey].templates.some((template) => template.id === parts[1]);
+    if (templateExists) {
+      showStudio(categoryKey, parts[1]);
+      return;
+    }
+  }
+  showTemplateList(categoryKey);
+}
+
+function syncTemplateControls() {
+  elements.profileSelect.disabled = state.category !== 'bjd';
+  elements.profileSelect.closest('.field').classList.toggle('is-disabled', state.category !== 'bjd');
+  elements.profileSelect.value = state.profile;
+  elements.unitSelect.value = state.unit;
+  elements.necklineSelect.value = state.neckline;
+  elements.sleeveSelect.value = state.sleeve;
+  elements.closureCheckbox.checked = state.closure;
+  elements.easeInput.value = state.ease;
+  elements.seamAllowanceInput.value = state.seamAllowance;
+  setTemplate(state.template);
+}
+
 const pageSize = {
   width: 8.5,
   height: 11,
@@ -129,8 +901,8 @@ function createMeasurementInputs() {
     .map(([key, label]) => {
       return `
         <label class="field">
-          <span>${label} (in)</span>
-          <input type="number" min="0" step="0.05" data-measurement="${key}" value="${state.measurements[key]}" />
+          <span>${label} (${unitLabel()})</span>
+          <input type="number" min="0" step="${measurementStep()}" data-measurement="${key}" value="${displayMeasurement(state.measurements[key])}" />
         </label>
       `;
     })
@@ -141,7 +913,7 @@ function createMeasurementInputs() {
       clearReferenceMatch();
       state.profile = 'custom';
       elements.profileSelect.value = 'custom';
-      state.measurements[input.dataset.measurement] = number(input.value, 0);
+      state.measurements[input.dataset.measurement] = fromDisplayUnit(input.value);
       render();
     });
   });
@@ -149,7 +921,7 @@ function createMeasurementInputs() {
 
 function syncMeasurementInputs() {
   elements.measurementGrid.querySelectorAll('input').forEach((input) => {
-    input.value = state.measurements[input.dataset.measurement];
+    input.value = displayMeasurement(state.measurements[input.dataset.measurement]);
   });
 }
 
@@ -175,6 +947,7 @@ function referenceDressStyle() {
     profile: 'americanGirl',
     skirt: 'a-line',
     sleeve: 'sleeveless',
+    templateId: 'trapeze',
   };
 }
 
@@ -211,18 +984,31 @@ function localStyleGuess(notes) {
     (is18Inch || state.profile === 'americanGirl') && sleeve === 'sleeveless' && skirt === 'a-line' && closure === 'back'
       ? 'sleeveless-a-line-18'
       : 'basic';
+  const templateId =
+    text.includes('qipao') || text.includes('cheongsam') || text.includes('mandarin collar')
+      ? 'qipao'
+      : text.includes('jiaao') || text.includes('jacket') || text.includes('hanfu')
+        ? 'jiaao'
+        : sleeve === 'puff'
+          ? 'puff-sleeve'
+          : skirt === 'gathered'
+            ? 'gathered-waist'
+            : skirt === 'a-line'
+              ? 'trapeze'
+              : 'prototype';
 
   return {
     closure,
     designNotes:
       fitPreset === 'sleeveless-a-line-18'
         ? 'Local reference match: 18-inch sleeveless A-line dress with back opening.'
-        : 'Local style guess from style notes. Configure OPENAI_API_KEY for image analysis.',
+        : `Local style guess matched fixed template: ${templateId}. Configure OPENAI_API_KEY for image analysis.`,
     fitPreset,
     neckline,
     profile,
     skirt,
     sleeve,
+    templateId,
     confidence: 0.35,
   };
 }
@@ -233,9 +1019,18 @@ function applyReferencePreset() {
 }
 
 function applyStyle(style) {
+  if (style.templateId && currentCategory().templates.some((template) => template.id === style.templateId)) {
+    state.templateId = style.templateId;
+    applyTemplateDefaults(currentTemplate());
+    createMeasurementInputs();
+    syncTemplateControls();
+    if (window.history?.replaceState) {
+      window.history.replaceState(null, '', routeHash(state.category, state.templateId));
+    }
+  }
   if (profiles[style.profile]) {
     state.profile = style.profile;
-    state.measurements = { ...profiles[state.profile] };
+    state.measurements = templateDefaults(currentTemplate());
     elements.profileSelect.value = state.profile;
     syncMeasurementInputs();
   }
@@ -269,7 +1064,7 @@ async function analyzeDesign() {
       return;
     }
     applyStyle(localStyleGuess(localInput));
-    elements.aiStatus.textContent = 'Applied a local style guess from notes. Upload an image and configure OPENAI_API_KEY for image analysis.';
+    elements.aiStatus.textContent = 'Applied a local style guess from notes. Upload an image and configure an AI provider key in .env for image analysis.';
     return;
   }
 
@@ -290,8 +1085,9 @@ async function analyzeDesign() {
     if (!response.ok) {
       const fallback = localStyleGuess(localInput);
       applyStyle(fallback);
+      const providerLabel = data.provider ? `${String(data.provider).toUpperCase()} ` : 'AI ';
       elements.aiStatus.textContent = data.fallback
-        ? 'OpenAI key is not configured. Applied a local style guess from notes.'
+        ? `${providerLabel}key is not configured. Applied a local style guess from notes.`
         : `AI analysis failed: ${data.error}`;
       return;
     }
@@ -325,7 +1121,7 @@ function fitPresetLabel() {
 }
 
 function bodiceDraft(kind) {
-  const m = state.measurements;
+  const m = draftMeasurements();
   const sa = state.seamAllowance;
   const ease = state.ease;
   const referenceMatch = isReferenceDressPreset();
@@ -432,7 +1228,7 @@ function backBodicePiece() {
 }
 
 function skirtPiece(kind) {
-  const m = state.measurements;
+  const m = draftMeasurements();
   const sa = state.seamAllowance;
   const ease = state.ease;
   const onFold = kind === 'front';
@@ -485,7 +1281,7 @@ function skirtPiece(kind) {
 function sleevePiece() {
   if (state.sleeve === 'sleeveless') return null;
 
-  const m = state.measurements;
+  const m = draftMeasurements();
   const sa = state.seamAllowance;
   const w = m.armhole + sa * 2 + (state.sleeve === 'puff' ? 0.45 : 0.15);
   const h = state.sleeve === 'puff' ? 1.15 : 0.85;
@@ -644,13 +1440,14 @@ function drawPiece(piece) {
       <path class="notch" d="M -0.05 0.72 L 0.05 0.82 L -0.05 0.92" />
       <text class="piece-label" x="${fmt(piece.labelX)}" y="${fmt(piece.labelY)}">${escapeHtml(piece.title)}</text>
       <text class="small-label" x="${fmt(piece.labelX)}" y="${fmt(piece.labelY + 0.18)}">${escapeHtml(piece.cut)}</text>
-      <text class="small-label" x="${fmt(piece.labelX)}" y="${fmt(piece.labelY + 0.36)}">SA ${fmt(state.seamAllowance)} in included</text>
+      <text class="small-label" x="${fmt(piece.labelX)}" y="${fmt(piece.labelY + 0.36)}">SA ${escapeHtml(dualMeasurement(state.seamAllowance))} included</text>
     </g>
   `;
 }
 
 function patternPageSvg(page, options = {}) {
-  const title = `${profiles[state.profile].label} dress pattern - US Letter - page ${page.number} of ${page.total}`.toUpperCase();
+  const template = currentTemplate();
+  const title = `${template.label} - US Letter - page ${page.number} of ${page.total}`.toUpperCase();
   const sizeAttributes =
     typeof options.y === 'number'
       ? `x="0" y="${fmt(options.y)}" width="${pageSize.width}" height="${pageSize.height}"`
@@ -677,8 +1474,9 @@ function patternPageSvg(page, options = {}) {
       <rect class="safe-border" x="0.45" y="0.45" width="7.6" height="10.1" />
       <text class="page-title" x="0.55" y="0.32">WAWA PATTERN STUDIO - ${escapeHtml(title)}</text>
       <rect x="6.85" y="0.62" width="1" height="1" fill="none" stroke="#111" stroke-width="0.012" />
-      <text class="small-label" x="6.86" y="1.78">1 x 1 inch test square</text>
-      <text class="small-label" x="6.86" y="1.95">Print at 100% scale</text>
+      <text class="small-label" x="6.86" y="1.78">1 x 1 in test square</text>
+      <text class="small-label" x="6.86" y="1.95">2.54 x 2.54 cm</text>
+      <text class="small-label" x="6.86" y="2.12">Print at 100% scale</text>
       ${page.pieces.map(drawPiece).join('')}
     </svg>
   `;
@@ -701,7 +1499,7 @@ function standalonePatternSvg() {
 }
 
 function patternWarnings() {
-  const m = state.measurements;
+  const m = draftMeasurements();
   const warnings = [];
   const pages = patternPages();
   if (pages.length > 1) {
@@ -716,10 +1514,14 @@ function patternWarnings() {
 function notesHtml() {
   const warnings = patternWarnings();
   const preset = fitPresetLabel();
+  const template = currentTemplate();
   const notes = [
-    `<strong>Profile:</strong> ${escapeHtml(profiles[state.profile].label)}`,
-    `<strong>Style:</strong> ${escapeHtml(state.sleeve)} ${escapeHtml(state.template)} dress, ${escapeHtml(state.neckline)} neckline`,
-    `<strong>Seam allowance:</strong> ${fmt(state.seamAllowance)} in included`,
+    `<strong>Template:</strong> ${escapeHtml(template.label)}`,
+    `<strong>Category:</strong> ${escapeHtml(currentCategory().label)}`,
+    ...(template.fixed ? [`<strong>Fixed template:</strong> ${escapeHtml(template.fixedNotes || template.summary)}`] : []),
+    ...(state.category === 'bjd' ? [`<strong>Doll profile:</strong> ${escapeHtml(profiles[state.profile].label)}`] : []),
+    `<strong>Style:</strong> ${escapeHtml(state.sleeve)} ${escapeHtml(state.template)} draft, ${escapeHtml(state.neckline)} neckline`,
+    `<strong>Seam allowance:</strong> ${escapeHtml(dualMeasurement(state.seamAllowance))} included`,
     `<strong>Buyer print note:</strong> Print on US Letter at 100% scale. Do not fit to page.`,
   ];
   if (preset) notes.push(`<strong>Reference match:</strong> ${escapeHtml(preset)}`);
@@ -730,26 +1532,30 @@ function notesHtml() {
 
 function etsyListingText() {
   const pageCount = patternPages().length;
+  const template = currentTemplate();
   return [
-    'Digital sewing pattern for a doll dress.',
+    `Digital sewing pattern: ${template.label}.`,
     '',
     'Included:',
     `- ${pageCount} US Letter printable pattern page${pageCount === 1 ? '' : 's'}`,
     '- Full-scale pattern pieces',
     '- English labels and cutting notes',
-    '- 1 inch test square',
+    '- 1 inch / 2.54 cm test square',
     '',
     'Pattern details:',
-    `- Doll profile: ${profiles[state.profile].label}`,
-    `- Style: ${state.sleeve} ${state.template} dress`,
+    `- Category: ${currentCategory().label}`,
+    ...(template.fixed ? [`- Fixed template: ${template.fixedNotes || template.summary}`] : []),
+    ...(state.category === 'bjd' ? [`- Doll profile: ${profiles[state.profile].label}`] : []),
+    `- Style: ${state.sleeve} ${state.template} draft`,
     `- Neckline: ${state.neckline}`,
-    `- Seam allowance included: ${fmt(state.seamAllowance)} in`,
+    `- Seam allowance included: ${dualMeasurement(state.seamAllowance)}`,
+    '- Measurement table includes inches and centimeters',
     ...(fitPresetLabel() ? [`- Reference match: ${fitPresetLabel()}`] : []),
     '',
     'Printing:',
     '- Print at 100% scale',
     '- Do not scale or fit to page',
-    '- Check the 1 x 1 inch test square before cutting',
+    '- Check the 1 x 1 inch / 2.54 x 2.54 cm test square before cutting',
     '',
     'This is a digital sewing pattern. No physical item will be shipped.',
     'The final pattern layout is generated from doll measurements and drafting rules. Test sew before commercial release.',
@@ -759,29 +1565,32 @@ function etsyListingText() {
 function buildMeasurementRows() {
   return measurementFields
     .map(([key, label]) => {
-      return `<tr><th>${label}</th><td>${fmt(state.measurements[key])} in</td></tr>`;
+      return `<tr><th>${label}</th><td>${dualMeasurement(state.measurements[key])}</td></tr>`;
     })
     .join('');
 }
 
 function printDocumentHtml() {
+  const template = currentTemplate();
   const imageHtml = state.imageDataUrl
     ? `<img class="print-cover-image" src="${state.imageDataUrl}" alt="Reference design" />`
     : `<div class="print-cover-image"></div>`;
 
   return `
     <article class="print-page print-cover">
-      <h1>${escapeHtml(profiles[state.profile].label)} Dress Pattern</h1>
+      <h1>${escapeHtml(template.label)}</h1>
       <p class="subtitle">Digital sewing pattern - US Letter - Print at 100% scale</p>
       <div class="print-cover-grid">
         ${imageHtml}
         <table class="print-table">
           <tbody>
-            <tr><th>Pattern</th><td>${escapeHtml(state.sleeve)} ${escapeHtml(state.template)} dress</td></tr>
-            <tr><th>Doll profile</th><td>${escapeHtml(profiles[state.profile].label)}</td></tr>
+            <tr><th>Pattern</th><td>${escapeHtml(template.label)}</td></tr>
+            <tr><th>Category</th><td>${escapeHtml(currentCategory().label)}</td></tr>
+            ${template.fixed ? `<tr><th>Template type</th><td>Fixed template</td></tr>` : ''}
+            ${state.category === 'bjd' ? `<tr><th>Doll profile</th><td>${escapeHtml(profiles[state.profile].label)}</td></tr>` : ''}
             <tr><th>Neckline</th><td>${escapeHtml(state.neckline)}</td></tr>
             <tr><th>Closure</th><td>${state.closure ? 'Back closure' : 'No back extension'}</td></tr>
-            <tr><th>Seam allowance</th><td>${fmt(state.seamAllowance)} in included</td></tr>
+            <tr><th>Seam allowance</th><td>${dualMeasurement(state.seamAllowance)} included</td></tr>
             ${fitPresetLabel() ? `<tr><th>Reference match</th><td>${escapeHtml(fitPresetLabel())}</td></tr>` : ''}
             ${buildMeasurementRows()}
           </tbody>
@@ -801,7 +1610,7 @@ function printDocumentHtml() {
       <h2>Sewing Instructions</h2>
       <ol>
         <li>Print this file on US Letter paper at 100% scale. Do not fit to page.</li>
-        <li>Measure the 1 x 1 inch test square before cutting fabric.</li>
+        <li>Measure the 1 x 1 inch / 2.54 x 2.54 cm test square before cutting fabric.</li>
         <li>Cut fabric pieces as labeled. Transfer notches and grainlines.</li>
         <li>Sew shoulder seams, then finish neckline and armholes.</li>
         <li>Sew side seams. Attach skirt to bodice with right sides together.</li>
@@ -818,11 +1627,73 @@ function printDocumentHtml() {
   `;
 }
 
+function measurementGuideSvg() {
+  const template = currentTemplate();
+  const labels = template.fields.slice(0, 6).map(([_key, label], index) => {
+    const y = 48 + index * 19;
+    return `<text class="guide-text" x="138" y="${y}">${escapeHtml(label)}</text>`;
+  });
+  return `
+    <svg viewBox="0 0 260 180" role="img" aria-label="${escapeHtml(template.guide)}">
+      <style>
+        .guide-body { fill: none; stroke: #3d2b33; stroke-width: 1.2; }
+        .guide-dress { fill: #f3d2df; stroke: #9f2352; stroke-width: 1.5; }
+        .guide-line { stroke: #9f2352; stroke-width: 1.4; stroke-dasharray: 5 4; }
+        .guide-text { font: 11px Arial, sans-serif; fill: #3d2b33; }
+      </style>
+      <text class="guide-text" x="12" y="18">${escapeHtml(template.guide)}</text>
+      <g transform="translate(44 28)">
+        <circle class="guide-body" cx="38" cy="14" r="10" />
+        <path class="guide-body" d="M 38 24 L 38 72 M 18 42 L 58 42 M 38 72 L 24 126 M 38 72 L 52 126" />
+        <path class="guide-dress" d="M 23 35 Q 38 26 53 35 L 68 106 Q 38 118 8 106 Z" />
+        <line class="guide-line" x1="13" y1="48" x2="63" y2="48" />
+        <line class="guide-line" x1="38" y1="34" x2="38" y2="108" />
+      </g>
+      <line class="guide-line" x1="124" y1="43" x2="132" y2="43" />
+      ${labels.join('')}
+    </svg>
+  `;
+}
+
+function openProject(project) {
+  const isBjd = project === 'bjd';
+  elements.homeView.classList.toggle('is-hidden', isBjd);
+  elements.studioView.classList.toggle('is-hidden', !isBjd);
+
+  document.querySelectorAll('[data-open-project]').forEach((button) => {
+    button.classList.toggle('is-active', button.dataset.openProject === project);
+  });
+
+  if (project === 'women' || project === 'pet') {
+    elements.homeView.classList.remove('is-hidden');
+    elements.studioView.classList.add('is-hidden');
+    document.querySelectorAll('[data-open-project]').forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.openProject === 'home');
+    });
+  }
+}
+
 function render() {
+  const template = currentTemplate();
+  const printHtml = printDocumentHtml();
+  elements.productTitle.textContent = template.title;
+  elements.productSubtitle.textContent =
+    state.unit === 'cm' ? 'Input unit: centimeters. Export shows inches and centimeters.' : 'Input unit: inches. Export shows inches and centimeters.';
+  elements.previewTitle.textContent = `${template.label} - US Letter Pattern Pages`;
+  elements.guideTitle.textContent = template.guide;
   elements.patternPreview.innerHTML = patternSvg();
+  elements.patternPreview.style.setProperty('--preview-zoom', state.zoom);
+  elements.measurementGuide.innerHTML = measurementGuideSvg();
   elements.patternNotes.innerHTML = notesHtml();
   elements.etsyText.value = etsyListingText();
-  elements.printDoc.innerHTML = printDocumentHtml();
+  elements.printDoc.innerHTML = printHtml;
+  elements.printPreviewPages.innerHTML = printHtml;
+}
+
+function openPrintPreview() {
+  render();
+  setVisibleView('printPreview');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function downloadSvg() {
@@ -830,14 +1701,65 @@ function downloadSvg() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = `wawa-${state.profile}-doll-dress-pattern-us-letter.svg`;
+  link.download = `wawa-${state.category}-${state.templateId}-pattern-us-letter.svg`;
   document.body.appendChild(link);
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
 }
 
+function openModal(kind) {
+  const modalHtml =
+    kind === 'terms'
+      ? `
+        <h2>Terms & Policy</h2>
+        <h3>Digital Service</h3>
+        <p>This local application generates digital sewing pattern files. Review measurements and test sew before selling a finished PDF product.</p>
+        <h3>Digital Delivery</h3>
+        <p>Exports are generated locally as US Letter pages for printing at 100% scale. No physical item is included.</p>
+        <h3>User Responsibility</h3>
+        <p>You are responsible for final fit testing, Etsy listing accuracy, and customer instructions.</p>
+      `
+      : `
+        <h2>Contact Us</h2>
+        <p>Use this area for your shop support email, custom drafting requests, and buyer help text.</p>
+        <p><a href="mailto:hello@example.com">hello@example.com</a></p>
+      `;
+
+  elements.modalContent.innerHTML = modalHtml;
+  elements.modalBackdrop.classList.remove('is-hidden');
+}
+
+function closeModal() {
+  elements.modalBackdrop.classList.add('is-hidden');
+}
+
 function bindEvents() {
+  document.addEventListener('click', (event) => {
+    const routeButton = event.target.closest('[data-route]');
+    if (routeButton) {
+      setRoute(routeButton.dataset.route);
+      return;
+    }
+
+    const categoryCard = event.target.closest('[data-category-card]');
+    if (categoryCard) {
+      setRoute(categoryCard.dataset.categoryCard);
+      return;
+    }
+
+    const templateCard = event.target.closest('[data-template-card]');
+    if (templateCard) {
+      setRoute(state.category, templateCard.dataset.templateCard);
+      return;
+    }
+
+    const modalButton = event.target.closest('[data-modal]');
+    if (modalButton) {
+      openModal(modalButton.dataset.modal);
+    }
+  });
+
   elements.referenceImage.addEventListener('change', () => {
     const file = elements.referenceImage.files[0];
     if (!file) return;
@@ -861,7 +1783,7 @@ function bindEvents() {
   elements.profileSelect.addEventListener('change', () => {
     clearReferenceMatch();
     state.profile = elements.profileSelect.value;
-    state.measurements = { ...profiles[state.profile] };
+    state.measurements = templateDefaults(currentTemplate());
     syncMeasurementInputs();
     render();
   });
@@ -904,15 +1826,58 @@ function bindEvents() {
     render();
   });
 
+  elements.unitSelect.addEventListener('change', () => {
+    state.unit = elements.unitSelect.value === 'cm' ? 'cm' : 'in';
+    createMeasurementInputs();
+    render();
+  });
+
+  elements.generateProductPdfButton.addEventListener('click', generateProductPdf);
+  elements.labAnalyzeButton.addEventListener('click', analyzeLabImage);
+  elements.labGenerateButton.addEventListener('click', generateLabPdf);
+  elements.labImageInput.addEventListener('change', () => {
+    const file = elements.labImageInput.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      elements.labImagePreview.innerHTML = `<img src="${reader.result}" alt="Uploaded lab reference" />`;
+      analyzeLabImage();
+    };
+    reader.readAsDataURL(file);
+  });
   elements.analyzeButton.addEventListener('click', analyzeDesign);
   elements.downloadSvgButton.addEventListener('click', downloadSvg);
+  elements.exportSvgPanelButton.addEventListener('click', downloadSvg);
   elements.referencePresetButton.addEventListener('click', applyReferencePreset);
-  elements.printButton.addEventListener('click', () => {
+  elements.backToTemplatesButton.addEventListener('click', () => setRoute(state.category));
+  elements.backToStudioButton.addEventListener('click', () => setVisibleView('studio'));
+  elements.exportPdfButton.addEventListener('click', openPrintPreview);
+  elements.printButton.addEventListener('click', openPrintPreview);
+  elements.printNowButton.addEventListener('click', () => {
     render();
     window.print();
   });
+  elements.zoomInButton.addEventListener('click', () => {
+    state.zoom = clamp(state.zoom + 0.1, 0.6, 1.6);
+    render();
+  });
+  elements.zoomOutButton.addEventListener('click', () => {
+    state.zoom = clamp(state.zoom - 0.1, 0.6, 1.6);
+    render();
+  });
+  elements.fitButton.addEventListener('click', () => {
+    state.zoom = 1;
+    render();
+  });
+  elements.modalCloseButton.addEventListener('click', closeModal);
+  elements.modalBackdrop.addEventListener('click', (event) => {
+    if (event.target === elements.modalBackdrop) closeModal();
+  });
+  window.addEventListener('hashchange', routeFromHash);
 }
 
+renderHome();
+applyTemplateDefaults(currentTemplate());
 createMeasurementInputs();
 bindEvents();
-render();
+routeFromHash();

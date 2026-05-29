@@ -1,0 +1,47 @@
+{
+  "unit": "in",
+  "profiles": {
+    "neo-blythe": {
+      "label": "Neo Blythe / factory 12-inch doll",
+      "height": 11.22,
+      "chest": 4.13,
+      "waist": 2.95,
+      "hip": 4.13,
+      "shoulder": 1.55,
+      "neck": 1.15,
+      "bodiceLength": 1.65,
+      "garmentLength": 4.75,
+      "armholeDepth": 1.08,
+      "backOpeningOverlap": 0.35,
+      "sourceNotes": "Blythe official height plus DIY Craft Club factory body girths; shoulder/armhole are drafting values pending in-house fit test."
+    },
+    "barbie-vintage": {
+      "label": "Vintage / old-style Barbie 12-inch doll",
+      "height": 12,
+      "chest": 6,
+      "waist": 3.75,
+      "hip": 5,
+      "shoulder": 2.5,
+      "neck": 2,
+      "bodiceLength": 2.5,
+      "garmentLength": 5.5,
+      "armholeDepth": 1.45,
+      "backOpeningOverlap": 0.38,
+      "sourceNotes": "Knitting-and.com old-style Barbie measurements. Do not assume modern Barbie fit."
+    },
+    "american-girl-18": {
+      "label": "American Girl style 18-inch doll",
+      "height": 18,
+      "chest": 11.75,
+      "waist": 11.5,
+      "hip": 12,
+      "shoulder": 4.5,
+      "neck": 6,
+      "bodiceLength": 4.4,
+      "garmentLength": 10.5,
+      "armholeDepth": 2.25,
+      "backOpeningOverlap": 0.5,
+      "sourceNotes": "Susan Kramer / Rosie / Pixie Faire 18-inch doll measurement ranges. Large format requires tiled output; blocked from product PDF until tiling is added."
+    }
+  }
+}

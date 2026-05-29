@@ -1,0 +1,23 @@
+{
+  "profile": "neo-blythe",
+  "piece_count": 2,
+  "has_front": true,
+  "has_back": true,
+  "layout_fits_us_letter": true,
+  "shoulder_match": true,
+  "side_match": true,
+  "has_test_square": true,
+  "has_cutting_list": true,
+  "has_sewing_steps": true,
+  "child_friendly": true,
+  "seams": {
+    "shoulder_front": 0.4748,
+    "shoulder_back": 0.4748,
+    "shoulder_difference": 0.0,
+    "side_front": 4.1217,
+    "side_back": 4.1217,
+    "side_difference": 0.0,
+    "status": "PASS"
+  },
+  "sellable_gate": true
+}

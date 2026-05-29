@@ -9,11 +9,17 @@
   <body>
     <main class="app-shell">
       <header class="topbar">
-        <div>
-          <h1>Wawa Pattern Studio</h1>
-          <p>Doll dress paper-pattern draft generator for Etsy-ready US Letter PDFs.</p>
-        </div>
+        <button class="brand-button" type="button" data-route="home">Wawa Pattern Studio</button>
         <div class="topbar-actions">
+          <nav class="draft-nav" aria-label="Drafting areas">
+            <button type="button" data-route="lab">Image Lab</button>
+            <button type="button" data-route="product">Doll Pattern Maker</button>
+            <button type="button" data-route="women">Womenswear Drafting</button>
+            <button type="button" data-route="bjd">BJD Drafting</button>
+            <button type="button" data-route="pet">Petwear Drafting</button>
+            <button type="button" data-route="home">Home</button>
+            <button type="button" data-route="about">About Us</button>
+          </nav>
           <button class="icon-button" id="downloadSvgButton" type="button" title="Download full-scale SVG" aria-label="Download SVG">
             <span aria-hidden="true">SVG</span>
           </button>
@@ -21,8 +27,118 @@
         </div>
       </header>
 
-      <section class="workspace">
+      <section class="project-home" id="homeView"></section>
+
+      <section class="product-maker is-hidden" id="productView" aria-label="Doll Pattern Maker">
+        <div class="product-maker__hero">
+          <p class="eyebrow">Product PDF Generator</p>
+          <h1>Doll Pattern Maker</h1>
+          <p>Choose one doll, choose one beginner-friendly outfit, then generate a printable US Letter PDF with quality checks.</p>
+        </div>
+        <div class="product-maker__grid">
+          <section class="product-card-panel">
+            <h2>1. Choose doll</h2>
+            <label class="field">
+              <span>Doll type</span>
+              <select id="productDollSelect">
+                <option value="neo-blythe">Neo Blythe / factory 12-inch doll</option>
+                <option value="barbie-vintage">Vintage Barbie / old-style 12-inch doll</option>
+                <option value="american-girl-18">American Girl style / 18-inch doll</option>
+              </select>
+            </label>
+            <h2>2. Choose outfit</h2>
+            <label class="field">
+              <span>Outfit</span>
+              <select id="productStyleSelect">
+                <option value="easy-a-line-dress">Easy A-Line Dress</option>
+                <option value="easy-pinafore-dress">Easy Pinafore Dress (experimental)</option>
+              </select>
+            </label>
+            <button class="primary-button full-button" id="generateProductPdfButton" type="button">Generate Product PDF</button>
+            <p class="status-line" id="productGenerateStatus">Ready. This creates one PDF for the selected doll.</p>
+          </section>
+          <section class="product-card-panel">
+            <h2>Output</h2>
+            <div class="product-result" id="productResult">
+              <p>No PDF generated yet.</p>
+            </div>
+          </section>
+          <section class="product-card-panel">
+            <h2>Quality checks</h2>
+            <ul class="quality-list" id="productQualityList">
+              <li>Generate a PDF to view checks.</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="image-lab is-hidden" id="labView" aria-label="Image Lab">
+        <div class="product-maker__hero">
+          <p class="eyebrow">Internal Experiment</p>
+          <h1>Upload Image Lab</h1>
+          <p>Upload a doll outfit image, add notes, match it to a verified or experimental template, then generate a PDF.</p>
+        </div>
+        <div class="product-maker__grid">
+          <section class="product-card-panel">
+            <h2>1. Upload reference</h2>
+            <label class="upload-box" for="labImageInput">
+              <input id="labImageInput" type="file" accept="image/png,image/jpeg,image/webp" />
+              <span>Upload doll outfit image</span>
+            </label>
+            <div class="image-preview" id="labImagePreview"><span>No image loaded</span></div>
+            <label class="field">
+              <span>Notes</span>
+              <textarea id="labNotes" rows="3" placeholder="Example: blue pinafore dress with straps, waistband, pocket"></textarea>
+            </label>
+            <button class="secondary-button full-button" id="labAnalyzeButton" type="button">Analyze / Match Template</button>
+          </section>
+          <section class="product-card-panel">
+            <h2>2. Result</h2>
+            <div class="notes-box" id="labAnalysisResult">No analysis yet.</div>
+            <label class="field">
+              <span>Doll type</span>
+              <select id="labDollSelect">
+                <option value="american-girl-18">American Girl style / 18-inch doll</option>
+                <option value="neo-blythe">Neo Blythe / factory 12-inch doll</option>
+                <option value="barbie-vintage">Vintage Barbie / old-style 12-inch doll</option>
+              </select>
+            </label>
+            <button class="primary-button full-button" id="labGenerateButton" type="button">Generate Experimental PDF</button>
+          </section>
+          <section class="product-card-panel">
+            <h2>3. PDF</h2>
+            <div class="product-result" id="labProductResult"><p>No PDF generated yet.</p></div>
+            <ul class="quality-list" id="labQualityList"><li>Generate a PDF to view checks.</li></ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="template-page is-hidden" id="templateView"></section>
+
+      <section class="about-page is-hidden" id="aboutView">
+        <h1>About Wawa Pattern Studio</h1>
+        <p>
+          A local drafting workspace for building Etsy-ready digital sewing patterns on US Letter paper.
+          The first production focus is fixed-size doll clothing, with womenswear and petwear templates kept
+          in the same architecture for future expansion.
+        </p>
+      </section>
+
+      <section class="workspace is-hidden" id="studioView">
         <aside class="control-panel" aria-label="Pattern controls">
+          <section class="control-section product-heading">
+            <button class="text-button" id="backToTemplatesButton" type="button">Back to templates</button>
+            <h2 id="productTitle">BJD Trapeze Dress Measurements</h2>
+            <p id="productSubtitle">Unit: inches</p>
+            <label class="field compact-field">
+              <span>Input unit</span>
+              <select id="unitSelect">
+                <option value="in">Inches (in)</option>
+                <option value="cm">Centimeters (cm)</option>
+              </select>
+            </label>
+          </section>
+
           <section class="control-section">
             <h2>Reference</h2>
             <label class="upload-box" for="referenceImage">
@@ -41,7 +157,7 @@
           </section>
 
           <section class="control-section">
-            <h2>Draft</h2>
+            <h2>Draft Settings</h2>
             <label class="field">
               <span>Doll profile</span>
               <select id="profileSelect">
@@ -104,15 +220,30 @@
         <section class="preview-panel" aria-label="Pattern preview">
           <div class="preview-toolbar">
             <div>
-              <h2>US Letter Pattern Pages</h2>
+              <h2 id="previewTitle">US Letter Pattern Pages</h2>
               <p>8.5 x 11 in, English labels, 1 inch test square on each page.</p>
             </div>
-            <div class="paper-pill">US Letter</div>
+            <div class="toolbar-actions">
+              <button class="zoom-button" id="zoomInButton" type="button">+</button>
+              <button class="zoom-button" id="zoomOutButton" type="button">-</button>
+              <button class="zoom-button" id="fitButton" type="button">Fit</button>
+              <div class="paper-pill">US Letter</div>
+            </div>
           </div>
           <div class="paper-preview" id="patternPreview"></div>
         </section>
 
         <aside class="output-panel" aria-label="Output summary">
+          <section>
+            <h2 id="guideTitle">Measurement Guide</h2>
+            <div class="guide-card" id="measurementGuide"></div>
+          </section>
+          <section>
+            <h2>Payment & Export</h2>
+            <button class="primary-button full-button" id="exportPdfButton" type="button">Export PDF</button>
+            <button class="secondary-button full-button" id="exportSvgPanelButton" type="button">Download SVG</button>
+            <p class="status-line">Local version exports directly. Add payment later before public Etsy delivery.</p>
+          </section>
           <section>
             <h2>Output Pack</h2>
             <ul class="output-list">
@@ -132,7 +263,34 @@
           </section>
         </aside>
       </section>
+
+      <section class="print-preview-view is-hidden" id="printPreviewView" aria-label="PDF preview">
+        <div class="print-preview-toolbar">
+          <div>
+            <h2>PDF Preview</h2>
+            <p>Review the cover, US Letter pattern pages, and sewing instructions before printing or saving as PDF.</p>
+          </div>
+          <div class="print-preview-actions">
+            <button class="secondary-button" id="backToStudioButton" type="button">Back to Studio</button>
+            <button class="primary-button" id="printNowButton" type="button">Print / Save PDF</button>
+          </div>
+        </div>
+        <div class="print-preview-pages" id="printPreviewPages"></div>
+      </section>
+
+      <footer class="site-footer">
+        <span>© 2026 Wawa Pattern Studio. Local drafting tool.</span>
+        <button type="button" data-modal="contact">Contact Us</button>
+        <button type="button" data-modal="terms">Terms & Policy</button>
+      </footer>
     </main>
+
+    <div class="modal-backdrop is-hidden" id="modalBackdrop" role="dialog" aria-modal="true">
+      <article class="modal-card">
+        <button class="modal-close" id="modalCloseButton" type="button" aria-label="Close">×</button>
+        <div id="modalContent"></div>
+      </article>
+    </div>
 
     <section id="printDoc" aria-hidden="true"></section>
 
